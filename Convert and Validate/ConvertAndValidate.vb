@@ -8,7 +8,7 @@ Module ConvertAndValidate
         'for testing the function add this to your Sub Main()
 
         Dim aValidNumber As Integer
-
+        Dim usernResponse As String
         Do
 
             Console.WriteLine($"Enter a number:")
@@ -31,14 +31,17 @@ Module ConvertAndValidate
 
     'make this work
 
-    Function ConversionValid(convertThisString, toThisInteger) As Boolean
+    Function ConversionValid(convertThisString As String, ByRef toThisInteger As Integer) As Boolean
 
-        Dim status As Boolean
+        Dim status As Boolean = False
 
         Try
-
+            toThisInteger = Convert.ToInt32(convertThisString)
+            status = True
+            Return True
         Catch ex As Exception
-
+            toThisInteger = 0
+            Return False
         End Try
 
         Return status
